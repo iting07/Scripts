@@ -1,3 +1,4 @@
+# Ignore this function and go to line 162.
 function Import-Xls 
 { 
  
@@ -157,7 +158,8 @@ Modified: 2011-04-09
         [gc]::Collect(); 
     } 
 } 
-#-------------------------------------------------
+#------------------------------------------------
+# START - Add your details below-----------------
 
 # Enter your domain name
 $domain = ""
@@ -165,6 +167,8 @@ $domain = ""
 $dnsServerIp = ""
 # Enter your file name to import
 $fileName = ""
+
+# END - Nothing below here needs to be edited----
 
 $hash = @{}
 Import-Xls .\$fileName | `
