@@ -181,7 +181,7 @@ foreach ($hostName in $hash.Keys) {
         # Check if Host name has an A record
         $actualIp = (nslookup $dnsName $dnsServerIp | Select-String -ErrorAction SilentlyContinue Address | Where-Object -ErrorAction SilentlyContinue LineNumber -eq 5).ToString().Split(' ')[-1]
         if ($actualIp -eq $inputIp) {
-            $result = $result + "DNS name is valid, matches input IP"
+            $result = $result + "$dnsName is valid, matches input IP"
             try {
                 # Check if input IP has a PTR record
                 $ptr = (nslookup $actualIp $dnsServerIp | Select-String -ErrorAction SilentlyContinue Name | Where-Object -ErrorAction SilentlyContinue LineNumber -eq 4).ToString().Split('')[-1].Split('.')[0]
@@ -190,16 +190,16 @@ foreach ($hostName in $hash.Keys) {
                 $result = $result + ", but no PTR record - Create a PTR record for $dnsName"
             }
         } else {
-            $result = $result + "DNS name is valid, but does not match input IP."
+            $result = $result + "$dnsName is valid, but does not match input IP."
             try {
                 $ptr = (nslookup $actualIp $dnsServerIp | Select-String -ErrorAction SilentlyContinue Name | Where-Object -ErrorAction SilentlyContinue LineNumber -eq 4).ToString().Split('')[-1].Split('.')[0]
-                $result = $result + "$actualIp has a valid PTR record - Update input IP to $actualIp"
+                $result = $result + " $actualIp has a valid PTR record - Update input IP to $actualIp"
             } catch {
-                $result = $result + "$actualIp does not have a PTR record - Update input IP to $actualIp and create a PTR record for $dnsName"
+                $result = $result + " $actualIp does not have a PTR record - Update input IP to $actualIp and create a PTR record for $dnsName"
             }
         }
     } catch {
-        $result = $result + "DNS name is not valid or lookup timed out, please check this one manually"
+        $result = $result + "$dnsName is not valid or lookup timed out, please check this one manually"
     }
     
     if ($result.Contains("timed out")) {
