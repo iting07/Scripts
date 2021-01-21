@@ -213,4 +213,12 @@ foreach ($hostName in $hash.Keys) {
     }
     
     Write-Host -BackgroundColor Gray -ForegroundColor Black "***********Next***********"
+
+    <#
+        OUTPUT INFO:
+            - GREEN     = Valid DNS NAME with A record and PTR record configured.
+            - RED       = DNS NAME is not valid or lookup timed out.
+            - YELLOW    = Valid DNS NAME with A record and PTR record but incorrect input IP.
+            - CYAN      = Valid DNS NAME with A record but no PTR record.
+    #>
 }
