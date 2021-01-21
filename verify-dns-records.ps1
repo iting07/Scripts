@@ -176,7 +176,7 @@ foreach ($hostName in $hash.Keys) {
     $result = ""
     $inputIp = $hash[$hostName]
     $dnsName = $hostName + '.' + $domain
-    Write-Host -BackgroundColor Black -ForegroundColor Yellow "Verifying A record and PTR record for $dnsName ($inputIp)"
+    Write-Host -BackgroundColor Black "Verifying A record and PTR record for $dnsName ($inputIp)"
     try {
         # Check if Host name has an A record
         $actualIp = (nslookup $dnsName $dnsServerIp | Select-String -ErrorAction SilentlyContinue Address | Where-Object -ErrorAction SilentlyContinue LineNumber -eq 5).ToString().Split(' ')[-1]
