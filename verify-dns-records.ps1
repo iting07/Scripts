@@ -190,7 +190,7 @@ foreach ($hostName in $hash.Keys) {
                 $result = $result + ", but no PTR record - Create a PTR record for $dnsName"
             }
         } else {
-            $result = $result + "$dnsName is valid, but does not match input IP."
+            $result = $result + "$dnsName is valid, but does not match input IP ($inputIp)."
             try {
                 $ptr = (nslookup $actualIp $dnsServerIp | Select-String -ErrorAction SilentlyContinue Name | Where-Object -ErrorAction SilentlyContinue LineNumber -eq 4).ToString().Split('')[-1].Split('.')[0]
                 $result = $result + " $actualIp has a valid PTR record - Update input IP to $actualIp"
