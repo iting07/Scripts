@@ -165,7 +165,9 @@ Modified: 2011-04-09
 $domain = ""
 # Enter your DNS Server IP
 $dnsServerIp = ""
-# Enter your file name to import
+# Enter your Excel file name to import. 
+# Make sure the columns are separated into Host Names (not FQDN) and IPs.
+# Column titles must be "Hosts" and "IPs".
 $fileName = ""
 
 # END - Nothing below here needs to be edited----
