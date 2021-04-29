@@ -1,7 +1,7 @@
 # To enable HTTPS Only for App Services in Azure.
 
 # Enter the Azure Subscriptions you want to look through
-$azureSubscriptions = @('Dev/Test', 'Production', 'Custody-Dev/Test', 'Custody-PROD')
+$azureSubscriptions = @('Dev/Test', 'Production')
 
 foreach ($subscription in $azureSubscriptions) {
     if ((Get-AzContext).Subscription.Name -ne $subscription) {
